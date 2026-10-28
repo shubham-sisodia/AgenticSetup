@@ -1,0 +1,26 @@
+{
+  "devPort": 5180,
+  "trunk": "main",
+  "activePaths": ["src2/"],
+  "pathRules": [
+    { "branch": "redesign/*", "deny": ["src/"], "reason": "legacy tree only changes on legacy branches" }
+  ],
+  "frozenPaths": ["src/generated/"],
+  "envPrefixes": { "src/": "REACT_APP_", "src2/": "VITE_" },
+  "designSystem": {
+    "package": "@acme/ui",
+    "forbidElements": { "button": "Button", "input": "Input", "select": "Select", "textarea": "Textarea", "table": "DataTable" },
+    "paths": ["src2/"],
+    "reference": "node_modules/@acme/ui/QUICK_REFERENCE.md"
+  },
+  "setup": { "copyFromMain": [".env", ".npmrc"], "install": "pnpm install" },
+  "packageManager": "pnpm",
+  "testCommand": "pnpm test",
+  "buildCommand": "pnpm build",
+  "verifyCommand": "pnpm exec playwright test",
+  "uiGlobs": ["src2/**/*.tsx", "src2/**/*.css"],
+  "release": { "watch": ["src/"], "versionFile": "package.json", "changelog": "CHANGELOG.md" },
+  "notes": ["Local work uses the dev API; never point local builds at production."],
+  "checkpointDir": ".claude/checkpoints",
+  "staleSessionHours": 48
+}
