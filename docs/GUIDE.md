@@ -76,6 +76,19 @@ Wiring: [`templates/repo/hooks.json`](../templates/repo/hooks.json). Each denial
 | `devup` | New worktree or clone; app won't start | Copy `.env`/`.npmrc` from the main checkout → install → reuse or start the server on `devPort` → `wait-on` (not sleep) → confirm it answers |
 | [`design-system-from-brief`](../skills/design-system-from-brief/SKILL.md) | New project's visual design | Brief → `DESIGN.md` → lint → one sample screen → export tokens |
 
+## Agents
+
+A skill is a recipe you run; an agent is a specialist you hand a job to. Add one when a reviewer keeps
+catching the same class of problem by hand.
+
+| Agent | Use when | What it does |
+| --- | --- | --- |
+| [`ui-qa`](../agents/ui-qa.md) | Before showing any visual or interactive change; "QA this page" | Drives the live page in Chrome at 1440×900 and 390×844, light/dark and reduced motion. Checks fit, overflow, tap targets, contrast, tabs that land off-screen, autoplay, and helpers (tours, carousels) that fight the user. Plays every control like an impatient user (rapid clicks, mid-flight switches, scroll away and back). Reports findings with repro steps and screenshots; never edits code. |
+
+Why it exists: screenshots and heuristic critiques miss interaction-level bugs (a demo cursor acting
+while the user's own click is still running, a loop that returns to the state the user just left, a
+comparison that phones can no longer compare). Those only show up when something actually plays the UI.
+
 ## Session retros
 
 Claude Code keeps your prompts (`~/.claude/history.jsonl`) and transcripts (`~/.claude/projects`) on disk; a retro reads them and tells you which rules to add. Run it monthly. No-plugin version: [`prompts/session-retro.md`](../prompts/session-retro.md).

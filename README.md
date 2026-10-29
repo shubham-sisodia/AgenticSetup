@@ -21,6 +21,7 @@ Plus a `DESIGN.md` per project for how the UI should look, and a monthly retro t
 - [ ] 6. For each new project's UI: fill [`templates/design/brief.md`](templates/design/brief.md), generate and lint a `DESIGN.md`.
 - [ ] 7. Install a small design skill stack (max five; see the guide).
 - [ ] 8. Run a session retro now as a baseline ([`prompts/session-retro.md`](prompts/session-retro.md)), then monthly.
+- [ ] 9. Copy [`agents/ui-qa.md`](agents/ui-qa.md) to `~/.claude/agents/`, and have it QA every visual or interactive change before you look at it.
 
 ## Where rules go
 
@@ -32,6 +33,7 @@ Plus a `DESIGN.md` per project for how the UI should look, and a monthly retro t
 | About code shape (no native buttons, router links only) | A lint rule |
 | What the UI should look like | `DESIGN.md` |
 | A habit for every repo | `~/.claude/CLAUDE.md` |
+| A check a reviewer keeps catching by hand (timing, autoplay, mobile dead ends) | An agent, e.g. `agents/ui-qa.md` |
 | Machine behavior | `~/.claude/settings.json` |
 
 ## Layout
@@ -49,6 +51,7 @@ templates/design/brief.md                   design brief
 templates/design/mcp.json                   shadcn MCP server   -> <repo>/.mcp.json
 templates/design/components.registries.json registries block   -> <repo>/components.json
 skills/design-system-from-brief/SKILL.md    brief -> DESIGN.md -> lint -> export
+agents/ui-qa.md                             browser QA that plays the UI like an impatient user -> ~/.claude/agents/
 prompts/session-retro.md                    retro prompt that works without any plugin
 ```
 
