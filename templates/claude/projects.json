@@ -1,0 +1,9 @@
+{
+  "_doc": "Key = the main repo's folder name (worktrees resolve to it). kind: new | migration | library | workspace. advisor/tester name agents in ~/.claude/agents/. tester null = no commit gate. uiAdvisor (top level or per project) is the design-system advisor UI questions also go to.",
+  "root": "~/code",
+  "uiAdvisor": "ds-advisor",
+  "projects": {
+    "acme-web":        { "alias": "acme",    "kind": "migration", "advisor": "acme-advisor",    "tester": "test-engineer" },
+    "design-studio":   { "alias": "studio",  "kind": "workspace", "advisor": null,              "tester": null }
+  }
+}

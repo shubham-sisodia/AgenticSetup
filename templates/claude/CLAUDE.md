@@ -39,6 +39,13 @@
 ## Subagents
 - Give each parallel subagent its own files. Shared files are edited by the main thread after they finish.
 - Rate-limited tools (design APIs, paid APIs) are called once from the main thread; save results to disk and pass paths.
+- Agents and skills are personal: they live in `~/.claude/agents/` and `~/.claude/skills/`, never under a project's `.claude/`. Project-level copies fail with "agent type not found" in other checkouts and worktrees, drift from the personal copy, and the registry below names agents that must resolve from every repo.
+
+## Projects, advisors, commit gate
+- Refer to projects by alias. `~/.claude/projects.json` maps folder → alias, kind, advisor, test agent; the session hook (`~/.claude/hooks/projects.py session`) injects the alias list and the current project's rules. Worktrees resolve to their main repo.
+- Session start: invoke the project's advisor (`<project>-advisor`) with the first task and the current branch. UI and component questions go to the design-system advisor (`ds-advisor`).
+- Before every commit: stage in a separate command, then have the test agent (`test-engineer`) verify the staged diff and tick the per-hunk checklist (`python3 ~/.claude/hooks/projects.py checklist`). The gate hook denies the commit until every hunk is ticked. Waive only when the user explicitly does: `CLAUDE_SKIP_TEST_GATE=1 git commit ...`.
+- New project: add it to `projects.json`, copy the closest sibling advisor (by kind) to `~/.claude/agents/<alias>-advisor.md`, add `~/.claude/agent-context/test-engineer/<folder>.md`, and seed `docs/PROJECT_CONTEXT.md` in the repo.
 
 ## Sessions
 - One session per branch or task. Before a restart, a long break or a large context, write a checkpoint: done, in progress, next, open issues, decisions.

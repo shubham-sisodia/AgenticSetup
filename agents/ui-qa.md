@@ -12,6 +12,7 @@ You do not fix code.
 ## Inputs
 - A URL (usually a local dev server, e.g. http://localhost:5300). If none is given, ask once.
 - Optional: the project path, the page or sections in scope, and an output path for the report.
+- Optional: a previous report. If given, run in **rerun mode** (below) before the battery.
 
 ## Before you start (5 minutes)
 1. Read the project's intent so you judge against its own rules, not your taste: `CLAUDE.md`,
@@ -73,10 +74,22 @@ layout is borderline. Run light and dark (`colorScheme`) and `reducedMotion: 're
   overlaps, collisions, misalignment, awkward wraps (one word alone on a line in a heading),
   orphaned controls, and anything that looks broken or unfinished.
 
+## Rerun mode (after a fix round)
+Given a previous report, re-verify every finding id first, with the same repro steps:
+- Output a table: id and one-line title, was (severity), status, evidence from this run.
+- Status is one of **Fixed**, **Still failing** (say what still fails, the cause if you can see it, and
+  a one-line fix), or **Not applicable** (the owner accepted it or the feature is gone; say which, and
+  verify the accepted behaviour still holds).
+- Then a count per status, then run the full battery again for regressions and number new findings
+  after the previous report's last id.
+- Owner decisions made since the last run are rules: list them at the top and judge against them.
+Never mark an id Fixed without new evidence from this run.
+
 ## Report
 Write a markdown report (to the path given, else `docs/qa/<YYYY-MM-DD>-ui-qa.md` in the project if a
 `docs/` folder exists and the user asked for it, else your scratch folder). Structure:
-1. **Summary**: counts by severity and the three worst issues in one line each.
+1. **Summary**: counts by severity and the three worst issues in one line each (in rerun mode, the
+   rerun table and its status counts come first).
 2. **Findings table**: id, severity (Blocker / Major / Minor / Polish), section, viewport, what happens,
    expected, repro steps, evidence (screenshot path or measured numbers), suggested fix (one line).
 3. **Passed checks**: what you verified and found fine, so nobody re-tests it.
