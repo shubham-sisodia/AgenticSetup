@@ -62,6 +62,7 @@ agents/design-critic.md                           Nielsen + WCAG 2.2 AA critique
 agents/ux-researcher.md                           cited discovery research
 agents/competitor-scout.md                        browser teardowns of competitor flows
 skills/design-system-from-brief/SKILL.md          brief -> DESIGN.md -> lint -> export
+skills/direction/SKILL.md                         taste lock -> cheap sketches -> pick one -> spike -> spec
 skills/brief/SKILL.md                             issue or idea -> design brief
 skills/teardown/SKILL.md                          parallel competitor teardowns
 skills/critique/SKILL.md                          rubric critique per screen, systemic issues first

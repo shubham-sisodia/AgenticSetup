@@ -129,6 +129,7 @@ What ships in [`skills/`](../skills) → `~/.claude/skills/`:
 | Skill | Use when | Steps |
 | --- | --- | --- |
 | [`design-system-from-brief`](../skills/design-system-from-brief/SKILL.md) | New project's visual design | Brief → `DESIGN.md` → lint → one sample screen → export tokens |
+| [`direction`](../skills/direction/SKILL.md) | Before building any new page, section or hero | Taste lock (loves, hates, test) → 6–8 throwaway sketches at equal fidelity → comparison page → owner picks → spike the riskiest part → locked spec for the build loop |
 | [`brief`](../skills/brief/SKILL.md) | Starting a design effort | Issue or idea → related research → `briefs/YYYY-MM-DD-slug.md` |
 | [`teardown`](../skills/teardown/SKILL.md) | "How does X do Y" | One `competitor-scout` per product, in parallel → steal / avoid synthesis |
 | [`critique`](../skills/critique/SKILL.md) | "Review this design" | `design-critic` per screen + `ds-advisor` consistency → systemic issues first |
@@ -200,6 +201,7 @@ Don't lock into one design system: generate one per project from a short brief, 
 ### Workflow
 
 1. **Write a brief** ([template](../templates/design/brief.md)). Same shape every time.
+   For a page or section whose look isn't decided yet, run [`/direction`](../skills/direction/SKILL.md) before building: it picks one design from cheap sketches so only one gets built.
 2. **Generate `DESIGN.md`** with the [design-system-from-brief](../skills/design-system-from-brief/SKILL.md) skill (or in Claude Design, then save as DESIGN.md).
 3. **Lint it:** `npx -y @google/design.md lint DESIGN.md` (structure + WCAG contrast).
 4. **Validate with one real screen** (a dense one, if the product is dense). Tweak, then use it for the full project.
